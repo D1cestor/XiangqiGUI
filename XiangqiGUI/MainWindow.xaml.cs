@@ -142,13 +142,21 @@ namespace XiangqiGUI
                 {
                     case GameState.SelectPiece:
                         g.ChoosePiece(btnRow, btnCol);
+                        if (g.getChoosedChess().moveableArea(g.getrc(), g.getbc(), g.getBoard()).Count == 0)
+                        {
+                            MessageBox.Show("You can't move this piece!");
+                            ChangeState(GameState.SelectPiece);
+                            break;
+                        }
                         ChangeState(GameState.SelectMove);
                         break;
                     case GameState.SelectMove:
+                        
                         g.MovePiece(btnRow, btnCol);
                         if (g.getGameover())
                         {
                             ChangeState(GameState.Gameover);
+                            MessageBox.Show($"The winner is Team {g.getTeam()}");
                             break;
                         }
                         foreach (Button b in GameboardGrid.Children)

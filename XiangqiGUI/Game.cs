@@ -106,13 +106,21 @@ namespace Xiangqi
 
         public void MovePiece(int x, int y)
         {
+            
             this.choosedChess.move(x, y, rc, bc, board);
             refresh(board, rc, bc);
+            ifGameover(rc, bc);
             this.choosedChess = new Chess(0, 0, "", "");
             turn++;
         }
 
-       
+        public void ifGameover(Chess[] rc, Chess[] bc) 
+        {
+            if (rc[3].getDead() || bc[3].getDead())
+            {
+                this.gameover = true;
+            }
+        }
         
        
         public void printBoard()
