@@ -151,7 +151,16 @@ namespace XiangqiGUI
                         ChangeState(GameState.SelectMove);
                         break;
                     case GameState.SelectMove:
-                        
+                        if (btnRow == g.getChoosedChess().getPositionx() && btnCol == g.getChoosedChess().getPositiony())
+                        {
+                            g.setChoosedChess(new Chess(0, 0, "", ""));
+                            ChangeState(GameState.SelectPiece);
+                            foreach (Button b in GameboardGrid.Children)
+                            {
+                                b.SetValue(BackgroundProperty, Brushes.White);
+                            }
+                            break;
+                        }
                         g.MovePiece(btnRow, btnCol);
                         if (g.getGameover())
                         {

@@ -190,5 +190,9 @@ namespace Xiangqi
                 return;
             }
         }
+        public void setChoosedChess(Chess c)
+        {
+            this.choosedChess = c;
+        }
     }
 }
