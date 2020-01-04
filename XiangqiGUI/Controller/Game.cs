@@ -194,5 +194,80 @@ namespace Xiangqi
         {
             this.choosedChess = c;
         }
+        public Boolean isChecked()
+        {
+            String target;
+            Boolean isChecked = false;
+            Chess[] chessTeam;
+            if (this.getTeam() == "black")
+            {
+                chessTeam = rc;
+                target = bc[3].getPositionx() + "," + rc[3].getPositiony();
+            }
+            else
+            {
+                chessTeam = bc;
+                target = rc[3].getPositionx() + "," + rc[3].getPositiony();
+            }
+            foreach (Chess piece in chessTeam)
+            {
+                List<String> area = piece.moveableArea(rc,bc,board);
+                if (area.Contains(target))
+                {
+                    isChecked = true;
+                    break;
+                }
+            }
+            return isChecked;
+        }
+        public Boolean isCheckMate()
+        {
+            String target;
+            Chess[] opp;
+            Chess[] redChess = rc;
+            Chess[] blackChess = bc;
+            string[,] fakeBoard = board;
+            Chess[] chess;
+            switch (getTeam())
+            {
+                case "red":
+                    chess = redChess;
+                    opp = blackChess;
+                    target = rc[3].getPositionx() + "," + rc[3].getPositiony();
+                    break;
+                default:
+                    chess = blackChess;
+                    opp = redChess;
+                    target = bc[3].getPositionx() + "," + rc[3].getPositiony();
+                    break;
+            }
+            Boolean checkMate = false;
+            foreach (Chess piece in chess)
+            {
+                redChess = rc;
+                blackChess = bc;
+                fakeBoard = board;
+                for (int i = 0; i < piece.moveableArea(rc,bc,board).Count; i++)
+                {
+                    string[] sCoordinate = piece.moveableArea(rc, bc, board)[i].Split(",");
+                    int x = Int32.Parse(sCoordinate[0]);
+                    int y = Int32.Parse(sCoordinate[1]);
+                    piece.move(x, y, redChess, blackChess, fakeBoard);
+                    refresh(fakeBoard, redChess, blackChess);
+                    foreach (Chess c in opp)
+                    {
+                        List<String> area = piece.moveableArea(redChess, blackChess, fakeBoard);
+                        if (area.Contains(target))
+                        {
+                            checkMate = true;
+                            break;
+                        }
+                    }
+                }
+
+
+            }
+            return checkMate;
+        }
     }
 }

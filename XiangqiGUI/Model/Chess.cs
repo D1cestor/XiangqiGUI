@@ -19,12 +19,6 @@ namespace Xiangqi
             this.name = name;
             this.team = team;
         }
-        //public Chess(int positionx, int positiony,string team)
-        //{
-        //    this.positionx = positionx;
-        //    this.positiony = positiony;
-        //    this.team = team;
-        //}
         
         public int getPositionx()
         {
@@ -99,7 +93,6 @@ namespace Xiangqi
             List<string> area = new List<string>();
             return area;
         }
-
         public Boolean isValidMove(int i, int j, Chess[] rc, Chess[] bc, string[,] board)
         {
             Boolean canMove = false;

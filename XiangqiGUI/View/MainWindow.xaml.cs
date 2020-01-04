@@ -132,6 +132,24 @@ namespace XiangqiGUI
                 }
                 i++;
             }
+            if (g.isChecked() && gameState == GameState.SelectPiece)
+            {
+                MessageBox.Show($"Team {g.getTeam()} is Checked!");
+            }
+            if (g.getGameover())
+            {
+                ChangeState(GameState.Gameover);
+                string winner = "";
+                if(g.getTeam() == "red")
+                {
+                    winner = "black";
+                }
+                if(g.getTeam() == "black")
+                {
+                    winner = "red";
+                }
+                MessageBox.Show($"The winner is Team {winner}");
+            }
         }
 
         public void HandleClick(int btnCol,int btnRow)
@@ -162,12 +180,7 @@ namespace XiangqiGUI
                             break;
                         }
                         g.MovePiece(btnRow, btnCol);
-                        if (g.getGameover())
-                        {
-                            ChangeState(GameState.Gameover);
-                            MessageBox.Show($"The winner is Team {g.getTeam()}");
-                            break;
-                        }
+                        
                         foreach (Button b in GameboardGrid.Children)
                         {
                             b.SetValue(BackgroundProperty, Brushes.White);
