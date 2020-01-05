@@ -133,11 +133,11 @@ namespace Xiangqi
                         {
 
                             area.Add($"{x},{tempy}");
-                            Console.Write(area[area.Count - 1] + " ");
-                            break;
+                           
                         }
                     }
-                
+                    break;
+
                 }
             }
             return area;
