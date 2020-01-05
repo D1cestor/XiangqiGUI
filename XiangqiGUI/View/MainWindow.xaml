@@ -5,10 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XiangqiGUI"
         mc:Ignorable="d"
-        Title="Xiangqi" Height="450" Width="800">
+        Title="Xiangqi" Height="800" Width="800">
     <StackPanel>
         <TextBlock Name = "ShowTeam" ></TextBlock>
         <TextBlock Name = "Message" ></TextBlock>
-        <Grid x:Name="GameboardGrid"></Grid>
+
+        <Grid x:Name="GameboardGrid" Height="667" Width="600" >
+            <Grid.Background>
+                <ImageBrush ImageSource="C:/Users/Larry/Desktop/XiangqiGUI/XiangqiGUI/RESOURCE/TEAM4cb.png" Stretch="UniformToFill" />
+            </Grid.Background>
+
+        </Grid>
+
     </StackPanel>
 </Window>

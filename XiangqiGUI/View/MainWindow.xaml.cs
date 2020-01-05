@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace XiangqiGUI
             SelectMove,
             Gameover
         }
-
+        public SoundPlayer sp = new SoundPlayer("C:/Users/Larry/Desktop/XiangqiGUI/XiangqiGUI/RESOURCE/bmusic.wav");
         public GameState gameState = GameState.SelectPiece;
         public Game g = new Game();
 
@@ -40,6 +41,22 @@ namespace XiangqiGUI
 
         public void CreateGrid()
         {
+            sp.PlayLooping();
+            ImageBrush myBrush = new ImageBrush();
+            Image image = new Image();
+            image.Source = new BitmapImage(
+                new Uri(
+                   "C:/Users/Larry/Desktop/XiangqiGUI/XiangqiGUI/RESOURCE/TEAM4cb.png"));
+            myBrush.ImageSource = image.Source;
+            Grid grid = new Grid();
+            grid.Background = myBrush;
+
+            ImageBrush bc = new ImageBrush();
+            Image bc1 = new Image();
+            bc1.Source = new BitmapImage(
+                new Uri(
+                   "C:/Users/Larry/Desktop/XiangqiGUI/XiangqiGUI/RESOURCE/bc.png"));
+            bc.ImageSource = bc1.Source;
             for (int i = 0; i < 9; i++)
             {
                 GameboardGrid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -48,18 +65,41 @@ namespace XiangqiGUI
             {
                 GameboardGrid.RowDefinitions.Add(new RowDefinition());
             }
+            //for (int col = 0; col < 9; col++)
+            //{
+            //    for (int row = 0; row < 10; row++)
+            //    {
+            //        Button button = new Button();
+            //        button.Name = "Button" + col.ToString() + row.ToString();
+            //        button.Click += new RoutedEventHandler(this.Button_Click);
+            //        button.SetValue(XQRowProperty, row);
+            //        button.SetValue(XQColumnProperty, col);
+            //        Grid.SetRow(button, row);
+            //        Grid.SetColumn(button, col);
+            //        GameboardGrid.Children.Add(button);
+            //    }
+            //}
+            string[,] board = new string[9, 10];
             for (int col = 0; col < 9; col++)
             {
                 for (int row = 0; row < 10; row++)
                 {
+                    board[col, row] = g.getBoard()[row, col];
                     Button button = new Button();
                     button.Name = "Button" + col.ToString() + row.ToString();
+                    button.Opacity = 0.2;
+                    button.FontSize = 40;
+                    button.BorderBrush = myBrush;
                     button.Click += new RoutedEventHandler(this.Button_Click);
                     button.SetValue(XQRowProperty, row);
                     button.SetValue(XQColumnProperty, col);
                     Grid.SetRow(button, row);
                     Grid.SetColumn(button, col);
                     GameboardGrid.Children.Add(button);
+
+
+
+
                 }
             }
             Message.Text = "Select Piece";
@@ -87,6 +127,15 @@ namespace XiangqiGUI
                 new PropertyMetadata(default(int)));
         public void RedrawGrid()
         {
+            ImageBrush bc2 = new ImageBrush();
+            Image bc3 = new Image();
+            bc3.Source = new BitmapImage(
+                new Uri(
+                   "C:/Users/Larry/Desktop/XiangqiGUI/XiangqiGUI/RESOURCE/bc2.png"));
+            bc2.ImageSource = bc3.Source;
+
+
+
             int i = 0;
             string[,] board = new string[9,10];
             for(int k = 0; k < 9; k++)
@@ -102,9 +151,12 @@ namespace XiangqiGUI
                 if (piece == "* ")
                 {
                     btnSelected.SetValue(ContentProperty, "");
+                    btnSelected.Opacity = 0.2;
                 }
                 else
                 {
+                    btnSelected.Background = bc2;
+                    btnSelected.Opacity = 1;
                     btnSelected.SetValue(ContentProperty, piece);
                     if (piece == "俥" || piece == "兵" || piece == "炮" || piece == "傌" || piece == "相" || piece == "仕" || piece == "帅")
                     {
@@ -125,10 +177,10 @@ namespace XiangqiGUI
                     {
                         btnSelected.SetValue(BackgroundProperty, Brushes.Aqua);
                     }
-                    else
-                    {
-                        btnSelected.SetValue(BackgroundProperty, Brushes.White);
-                    }
+                    //else
+                    //{
+                    //    btnSelected.SetValue(BackgroundProperty, Brushes.White);
+                    //}
                 }
                 i++;
             }
