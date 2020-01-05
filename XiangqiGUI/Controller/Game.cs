@@ -223,51 +223,83 @@ namespace Xiangqi
         public Boolean isCheckMate()
         {
             String target;
-            Chess[] opp;
-            Chess[] redChess = rc;
-            Chess[] blackChess = bc;
-            string[,] fakeBoard = board;
-            Chess[] chess;
+            Chess[] redChess = new Chess[rc.Length];
+            Chess[] blackChess = new Chess[rc.Length];
+            Chess[] opp = new Chess[rc.Length];
+            Chess[] chess = new Chess[bc.Length];
+            
             switch (getTeam())
             {
                 case "red":
-                    chess = redChess;
-                    opp = blackChess;
+                    bc.CopyTo(opp, 0);
+                    blackChess = opp;
+                    rc.CopyTo(chess, 0);
+                    redChess = chess;
                     target = rc[3].getPositionx() + "," + rc[3].getPositiony();
                     break;
                 default:
-                    chess = blackChess;
-                    opp = redChess;
+                    bc.CopyTo(chess, 0);
+                    blackChess = chess;
+                    rc.CopyTo(opp, 0);
+                    redChess = opp;
                     target = bc[3].getPositionx() + "," + rc[3].getPositiony();
                     break;
             }
-            Boolean checkMate = false;
-            foreach (Chess piece in chess)
+            Boolean checkMate = true;
+            Boolean check = false;
+            foreach (Chess piece in opp)
             {
-                redChess = rc;
-                blackChess = bc;
-                fakeBoard = board;
-                for (int i = 0; i < piece.moveableArea(rc,bc,board).Count; i++)
+                for (int i = 0; i < piece.moveableArea(redChess,blackChess,board).Count; i++)
                 {
+                    string[,] fakeBoard = board;
+                    switch (getTeam())
+                    {
+                        case "red":
+                            bc.CopyTo(opp, 0);
+                            blackChess = opp;
+                            rc.CopyTo(chess, 0);
+                            redChess = chess;
+                            target = rc[3].getPositionx() + "," + rc[3].getPositiony();
+                            break;
+                        default:
+                            bc.CopyTo(chess, 0);
+                            blackChess = chess;
+                            rc.CopyTo(opp, 0);
+                            redChess = opp;
+                            target = bc[3].getPositionx() + "," + rc[3].getPositiony();
+                            break;
+                    }
                     string[] sCoordinate = piece.moveableArea(rc, bc, board)[i].Split(",");
                     int x = Int32.Parse(sCoordinate[0]);
                     int y = Int32.Parse(sCoordinate[1]);
                     piece.move(x, y, redChess, blackChess, fakeBoard);
                     refresh(fakeBoard, redChess, blackChess);
-                    foreach (Chess c in opp)
+                    foreach (Chess c in chess)
                     {
-                        List<String> area = piece.moveableArea(redChess, blackChess, fakeBoard);
+                        List<String> area = c.moveableArea(redChess, blackChess, fakeBoard);
                         if (area.Contains(target))
                         {
-                            checkMate = true;
+                            check = true;
                             break;
                         }
                     }
+                    if (!check)
+                    {
+                        checkMate = false;
+                        break;
+                    }
+
                 }
-
-
+                if (!checkMate)
+                {
+                    break;
+                }
             }
             return checkMate;
+        }
+        public void setGameover(Boolean gameover)
+        {
+            this.gameover = gameover;
         }
     }
 }

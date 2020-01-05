@@ -134,7 +134,14 @@ namespace XiangqiGUI
             }
             if (g.isChecked() && gameState == GameState.SelectPiece)
             {
-                MessageBox.Show($"Team {g.getTeam()} is Checked!");
+                if (g.isCheckMate())
+                {
+                    MessageBox.Show("Checkmate!");
+                }
+                else
+                {
+                    MessageBox.Show($"Team {g.getTeam()} is Checked!");
+                }
             }
             if (g.getGameover())
             {
@@ -215,6 +222,9 @@ namespace XiangqiGUI
 
                 case GameState.SelectPiece:
                     Message.Text = "Select Piece";
+                    break;
+                case GameState.Gameover:
+                    Message.Text = "Gameover";
                     break;
             }
         }

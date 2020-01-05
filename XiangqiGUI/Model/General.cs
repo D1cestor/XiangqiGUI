@@ -25,7 +25,6 @@ namespace Xiangqi
             }
             int tempx = x;
             int tempy = y;
-            Boolean checkmate = false;
             if (this.getTeam() == "red")
             {
                 for (int i = 0; i < 3; i++)
@@ -47,7 +46,6 @@ namespace Xiangqi
                             if (eatable || board[i, j] == "* ")
                             {
                                 area.Add($"{i},{j}");
-                                Console.Write(area[area.Count - 1] + " ");
                             }
                             for (int l = x+1; l<=9; l++) // Two generals are facing.
                             {
@@ -58,8 +56,6 @@ namespace Xiangqi
                                 if (board[l,y] == "将")
                                 {
                                     area.Add($"{l},{y}");
-                                    Console.Write(area[area.Count - 1] + " ");
-                                    checkmate = true;
                                     break;
                                 }
                                 else
@@ -67,11 +63,8 @@ namespace Xiangqi
                                     break;
                                 }
                             }
-                            if (checkmate) { break; }
                         }
-                        
                     }
-                    if (checkmate) { break; }
                 }
             }
             if (this.getTeam() == "black")
@@ -95,7 +88,6 @@ namespace Xiangqi
                             if (eatable || board[i, j] == "* ")
                             {
                                 area.Add($"{i},{j}");
-                                Console.Write(area[area.Count - 1] + " ");
                             }
                             for (int l = x - 1; l >= 0; l--) // Two generals are facing.
                             {
@@ -106,8 +98,6 @@ namespace Xiangqi
                                 if (board[l, y] == "帅")
                                 {
                                     area.Add($"{l},{y}");
-                                    Console.Write(area[area.Count - 1] + " ");
-                                    checkmate = true;
                                     break;
                                 }
                                 else
@@ -116,11 +106,9 @@ namespace Xiangqi
                                 }
                             }
                         }
-
-
-                        if (checkmate) { break; }
+                       // if (checkmate) { break; }
                     }
-                if (checkmate) { break; }
+                //if (checkmate) { break; }
                 }
             }
             return area;

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xiangqi.Game">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="board" Hidden="true" />
+      <Field Name="team" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QIiAKEAAAAACAALAAgAACAgAEAAQAQAAYBAEAEIBBAA=</HashCode>
+      <FileName>Controller\Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="team" />
+      <Field Name="board" />
+      <Field Name="rc" />
+      <Field Name="bc" />
+      <Field Name="choosedChess" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Xiangqi.Advisor">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Advisor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Cannon">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Cannon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Chess">
+    <Position X="14.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAACAAAAAKICGMAAUAABIAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Chess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Elephant">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Elephant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.General">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\General.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Horse">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Horse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Rook">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Rook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xiangqi.Soilder">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="Xiangqi.Chess" FixedFromPoint="true">
+      <Path>
+        <Point X="15.25" Y="4" />
+        <Point X="15.25" Y="3.55" />
+        <Point X="19.75" Y="3.55" />
+        <Point X="19.75" Y="3.175" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Soilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XiangqiGUI.MainWindow">
+    <Position X="10.25" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="XiangqiGUI.MainWindow.GameState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\MainWindow.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAAAAAAgEAAAAAAAAIIAAgAAAAFAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="g" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
